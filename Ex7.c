@@ -100,7 +100,24 @@ int isArrAsc(int a[], int size)
 	return isAscArrRec(a, size, 0);
 }
 
+int isSubsetSumExistRec(int a[], int size, int k, int sum,int i) {
+	if (sum == k) {
+		return 1;
+	}
+	if (i == size) {
+		return 0;
+	}
+	/*
+	* Backtracking: First call(right) is without current value,
+	* and the second call(left) is with current value;
+	*/
+	return isSubsetSumExistRec(a, size, k, sum + a[i], i + 1)
+		|| isSubsetSumExistRec(a, size, k, sum, i + 1);
+}
 int isSubsetSumExist(int a[], int size, int k)
 {
-
+	/*
+	* This is a classic backtrack exercise.
+	*/
+	return isSubsetSumExistRec(a, size, k, 0, 0);
 }

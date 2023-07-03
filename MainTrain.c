@@ -73,9 +73,9 @@ int main(){
 	Test4(b, 5, 0, 4);
 	Test4(c, 5, 1, 4);
 
-	//Test5(a, 4, 15, 1, 4);
-	//Test5(b, 5, 9, 1, 4);
-	//Test5(c, 5, 7, 0, 4);
+	Test5(a, 4, 15, 1, 4);
+	Test5(b, 5, 9, 1, 4);
+	Test5(c, 5, 7, 0, 4);
 
 	printf("done");
 	return 0;
