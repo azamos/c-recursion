@@ -81,10 +81,23 @@ void dupCapStringRecInternal(char* source, char* dest) {
 	return;
 }
 
-
+int isAscArrRec(int arr[], int size, int i) {
+	/*
+	* Stop condition: if we made it to the end of the array without a hitch,
+	* we can determine that the array is sorted in ascending order,
+	* otherwise, a return statement would have sent out -1;
+	*/
+	if(i==size-1){
+		return 1;
+	}
+	if (arr[i] > arr[i + 1]) {
+		return 0;
+	}
+	return isAscArrRec(arr, size, i + 1);
+}
 int isArrAsc(int a[], int size)
 {
-
+	return isAscArrRec(a, size, 0);
 }
 
 int isSubsetSumExist(int a[], int size, int k)
