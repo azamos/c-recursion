@@ -28,7 +28,20 @@ int FindCommonDigit(unsigned long n1, unsigned long n2)
 
 long GetReverse(unsigned long n)
 {
-	
+	int nLen = GetSizeRec(n);
+	return GetReverseRec(n, nLen);
+}
+long GetReverseRec(unsigned long n, int nLen) {
+	if (n < 10) {
+		return n;
+	}
+	return n / nLen + 10*GetReverseRec(n % nLen, nLen / 10);
+}
+int GetSizeRec(unsigned int num) {
+	if (num < 10) {
+		return num > 0 ? 1 : 0;
+	}
+	return 10*GetSizeRec(num / 10);
 }
 
 
