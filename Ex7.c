@@ -1,5 +1,7 @@
 #include "Ex7.h"
 
+void dupCapStringRecInternal(char* source, char* dest);
+
 int FindCommonDigit(unsigned long n1, unsigned long n2)
 {
 	/*
@@ -28,6 +30,12 @@ int FindCommonDigit(unsigned long n1, unsigned long n2)
 
 long GetReverse(unsigned long n)
 {
+	/*
+	* I will use this as an envelope function.
+	* First, I will use recursion to get the length of n;
+	* Then, I will call an internal recursive function,
+	* which accepts both a number and its length as parameters.
+	*/
 	int nLen = GetSizeRec(n);
 	return GetReverseRec(n, nLen);
 }
@@ -49,7 +57,28 @@ int GetSizeRec(unsigned int num) {
 
 char* dupCapStringRec(char str[])
 {
-
+	/*
+	* Again, this func is an envelope function.
+	* Here, I get the length of the string,
+	* and malloc the neccessary memory
+	*/
+	int strLen = strlen(str);
+	char* copy = (char*)malloc(sizeof(char) * (strLen+1));
+	copy[strLen] = '\0';
+	/*
+	* Now, to pass str and copy as pointers to dupCapStringRecInternal
+	*/
+	dupCapStringRecInternal(str, copy);
+	return copy;
+}
+void dupCapStringRecInternal(char* source, char* dest) {
+	if (*source == '\0') {
+		return;
+	}
+	char sourceLetter = *source;
+	*dest = (sourceLetter > 'a'-1 && sourceLetter < 'z'+1) ? sourceLetter - 32 : sourceLetter;
+	dupCapStringRecInternal(++source, ++dest);
+	return;
 }
 
 
